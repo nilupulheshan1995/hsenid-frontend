@@ -4,7 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 interface FormBaseProps {
     formElements:Function;
     formTitle:string;
-    init:any
+    init:any;
+    handleSubmit?:Function;
 }
 
 const FormBase: FunctionComponent<FormBaseProps> = (props) => {
@@ -14,8 +15,9 @@ const FormBase: FunctionComponent<FormBaseProps> = (props) => {
       <Formik
         initialValues={props.init}
         onSubmit={(values, { setSubmitting }) => {
+          if(props.handleSubmit)
+            props.handleSubmit(values);
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 400);
         }}

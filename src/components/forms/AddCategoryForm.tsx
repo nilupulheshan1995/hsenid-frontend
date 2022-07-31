@@ -1,12 +1,21 @@
 import { ErrorMessage, Field, Form } from "formik";
 import { FunctionComponent } from "react";
+import { addCategories } from "../../api/base-api";
 import FormBase from "./FormBase";
 
 interface AddCategoryFormProps {}
 
 const AddCategoryForm: FunctionComponent<AddCategoryFormProps> = () => {
+  
+    const handleSubmit = (values: any) => {
+        addCategories(values).then((res) => {
+            alert(JSON.stringify(res,null,2))
+        });
+    };
+
   return (
     <FormBase
+      handleSubmit={handleSubmit}
       init={{ name: "", description: "" }}
       formTitle="Add Category form"
       formElements={(isSubmitting: any) => (

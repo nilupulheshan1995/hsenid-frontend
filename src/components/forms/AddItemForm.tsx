@@ -25,7 +25,6 @@ const AddItemForm: FunctionComponent<AddItemFormProps> = () => {
       formTitle="Add Item form"
       formElements={(isSubmitting: any) => (
         <Form>
-          <p>{JSON.stringify(data)}</p>
           <div className="inputWrapper">
             <label>Item Name</label>
             <Field type="text" name="name" />

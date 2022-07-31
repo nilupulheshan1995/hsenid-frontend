@@ -7,7 +7,7 @@ import styles from "../styles/Home.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import AddCategoryForm from "../components/forms/AddCategoryForm";
 import AddItemForm from "../components/forms/AddItemForm";
-import { getAllCategories } from "../api/base-api";
+import { addCategories } from "../api/base-api";
 
 const Home: NextPage = () => {
   return (
@@ -18,14 +18,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
-
-      <AddCategoryForm/>
+      <AddCategoryForm />
       <h1>--------------------------------------</h1>
-      <AddItemForm/>
+      <AddItemForm />
       <h1>--------------------------------------</h1>
-      <button onClick={()=>getAllCategories()}>Click me</button>
-
+      <button onClick={() => addCategories({name:"test",description:"test"})}>Click me</button>
 
       {/* <Footer/> */}
     </div>

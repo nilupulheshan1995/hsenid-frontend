@@ -1,15 +1,17 @@
 import axios from "axios";
+import { AddCategoryType } from "../types/api-types";
 
 const API_BASE = "http://localhost:8080/api";
 
-export const GET_ALL_CATEGORIES_API = API_BASE +  "/category/getAll"
+export const GET_ALL_CATEGORIES_API = API_BASE + "/category/getAll";
 
-export const getAllCategories = async () => {
+export const addCategories = async (data: AddCategoryType) => {
+  console.log("data :", data);
   return await axios({
-    method: "GET",
+    method: "POST",
     baseURL: API_BASE,
-    url: "/category/getAll",
-    data: {},
+    url: "/category/add",
+    data: data,
   })
     .then((response) => {
       return response.data;
