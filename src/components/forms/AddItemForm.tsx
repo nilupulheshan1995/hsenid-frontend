@@ -1,6 +1,7 @@
+import * as React from 'react';
 import { ErrorMessage, Field, Form } from "formik";
 import { FunctionComponent } from "react";
-import { GET_ALL_CATEGORIES_API } from "../../api/base-api";
+import { addItem, GET_ALL_CATEGORIES_API } from "../../api/base-api";
 import useFetch from "../../hooks/useFetchHook";
 import FormBase from "./FormBase";
 
@@ -19,8 +20,16 @@ const AddItemForm: FunctionComponent<AddItemFormProps> = () => {
     }
   };
 
+  const handleSubmit = (value:any) => { 
+    value = {...value,categoryId:Number(value.categoryId)}
+    addItem(value).then((res) => {
+      alert(JSON.stringify(res,null,2));
+    })
+  }
+
   return (
     <FormBase
+      handleSubmit={handleSubmit}
       init={{ name: "", description: "" }}
       formTitle="Add Item form"
       formElements={(isSubmitting: any) => (
@@ -29,6 +38,11 @@ const AddItemForm: FunctionComponent<AddItemFormProps> = () => {
             <label>Item Name</label>
             <Field type="text" name="name" />
             <ErrorMessage name="name" component="div" />
+          </div>
+          <div className="inputWrapper">
+            <label>Item Description</label>
+            <Field type="text" name="description" />
+            <ErrorMessage name="description" component="div" />
           </div>
           <div className="inputWrapper">
             <label>Unit Price</label>
@@ -52,13 +66,13 @@ const AddItemForm: FunctionComponent<AddItemFormProps> = () => {
           </div>
           <div className="inputWrapper">
             <label>Category</label>
-            <Field type="" name="category" as="select">
+            <Field type="" name="categoryId" as="select">
               <option value="null">select category</option>
               {loadCategories()}
             </Field>
           </div>
 
-          <button type="submit" disabled={isSubmitting}>
+          <button className='submitBtn' type="submit" disabled={isSubmitting}>
             Submit
           </button>
         </Form>

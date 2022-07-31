@@ -30,7 +30,7 @@ const AddCategoryForm: FunctionComponent<AddCategoryFormProps> = () => {
             <Field type="text" name="description" />
             <ErrorMessage name="description" component="div" />
           </div>
-          <button type="submit" disabled={isSubmitting}>
+          <button className="submitBtn" type="submit" disabled={isSubmitting}>
             Submit
           </button>
         </Form>

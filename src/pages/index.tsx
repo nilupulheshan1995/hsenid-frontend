@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       <h1>--------------------------------------</h1>
       <AddItemForm />
       <h1>--------------------------------------</h1>
-      <button onClick={() => addCategories({name:"test",description:"test"})}>Click me</button>
+      
 
       {/* <Footer/> */}
     </div>
