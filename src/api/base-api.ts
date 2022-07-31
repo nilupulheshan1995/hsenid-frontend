@@ -4,6 +4,7 @@ import { AddCategoryType, AddItem } from "../types/api-types";
 const API_BASE = "http://localhost:8080/api";
 
 export const GET_ALL_CATEGORIES_API = API_BASE + "/category/getAll";
+export const GET_ALL_ITEM_API = API_BASE + "/item/getAll";
 
 export const addCategories = async (data: AddCategoryType) => {
   console.log("data :", data);
