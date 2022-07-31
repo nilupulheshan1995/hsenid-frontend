@@ -18,10 +18,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <AddCategoryForm />
-      <h1>--------------------------------------</h1>
-      <AddItemForm />
-      <h1>--------------------------------------</h1>
+      
       
 
       {/* <Footer/> */}

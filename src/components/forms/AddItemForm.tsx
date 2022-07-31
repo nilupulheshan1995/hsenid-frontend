@@ -40,7 +40,7 @@ const AddItemForm: FunctionComponent<AddItemFormProps> = () => {
             <ErrorMessage name="name" component="div" />
           </div>
           <div className="inputWrapper">
-            <label>Item Description</label>
+            {/* <label>Item Description</label> */}
             <Field type="text" name="description" />
             <ErrorMessage name="description" component="div" />
           </div>
@@ -66,7 +66,7 @@ const AddItemForm: FunctionComponent<AddItemFormProps> = () => {
           </div>
           <div className="inputWrapper">
             <label>Category</label>
-            <Field type="" name="categoryId" as="select">
+            <Field type="" name="categoryId" as="select" >
               <option value="null">select category</option>
               {loadCategories()}
             </Field>
