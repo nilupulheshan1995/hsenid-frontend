@@ -10,8 +10,8 @@ interface DashboardProps {}
 const Dashboard: FunctionComponent<DashboardProps> = () => {
   return (
     <>
+      <a href="/item">Add Item</a>  
       <ItemTable />
-
       <OrderTable/>
     </>
   );
