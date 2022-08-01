@@ -13,6 +13,19 @@ export type ItemType = {
   categoryId: number;
 };
 
-export interface ItemResponse extends ItemType{
-    itemid:number;
+export interface ItemResponse extends ItemType {
+  itemid: number;
+}
+
+export interface OrderType {
+  qty: number;
+  item: number;
+}
+
+export interface OrderSubmitType {
+  sellTotal: number;
+  costTotal: number;
+  discount: number;
+  customer: number;
+  orderDetials: OrderType[];
 }

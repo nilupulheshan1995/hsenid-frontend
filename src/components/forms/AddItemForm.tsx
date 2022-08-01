@@ -40,7 +40,7 @@ const AddItemForm: FunctionComponent<AddItemFormProps> = () => {
             <ErrorMessage name="name" component="div" />
           </div>
           <div className="inputWrapper">
-            {/* <label>Item Description</label> */}
+            <label>Item Description</label>
             <Field type="text" name="description" />
             <ErrorMessage name="description" component="div" />
           </div>

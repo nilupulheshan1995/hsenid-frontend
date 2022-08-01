@@ -1,7 +1,8 @@
 import axios from "axios";
-import { AddCategoryType, ItemType } from "../types/api-types";
+import { AddCategoryType, ItemType, OrderSubmitType } from "../types/api-types";
 
-const API_BASE = "http://localhost:8080/api";
+// const API_BASE = "http://localhost:8080/api";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const GET_ALL_CATEGORIES_API = API_BASE + "/category/getAll";
 export const GET_ALL_ITEM_API = API_BASE + "/item/getAll";
@@ -52,5 +53,22 @@ export const getItemsByOrder = async (orderId: number) => {
     })
     .catch((error) => {
       console.log(error);
+    });
+};
+
+export const submitOrder = async (order: OrderSubmitType) => {
+  console.log("data :", order);
+  return await axios({
+    method: "POST",
+    baseURL: API_BASE,
+    url: `/order/add`,
+    data:order
+  })
+  .then((response) => {
+      console.log("response :", response);
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
     });
 };

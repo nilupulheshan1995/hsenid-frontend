@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FunctionComponent } from "react";
 
 interface HeaderProps {}
@@ -7,25 +8,22 @@ const Header: FunctionComponent<HeaderProps> = () => {
     <>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
-          <a href="https://flowbite.com" className="flex items-center">
-            
+          <Link href="https://flowbite.com" className="flex items-center">
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                Boutique Shop
+              Boutique Shop
             </span>
-          </a>
+          </Link>
           <div className="flex items-center">
-            <a
-              href="tel:5541251234"
-              className="mr-6 text-sm font-medium text-gray-500 dark:text-white hover:underline"
-            >
-              (555) 412-1234
-            </a>
-            <a
-              href="#"
-              className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline"
-            >
-              Login
-            </a>
+            <Link href="tel:5541251234">
+              <a className="mr-6 text-sm font-medium text-gray-500 dark:text-white hover:underline">
+                (555) 412-1234
+              </a>
+            </Link>
+            <Link href="/login">
+              <a className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                Log Out
+              </a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -34,38 +32,39 @@ const Header: FunctionComponent<HeaderProps> = () => {
           <div className="flex items-center">
             <ul className="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
               <li>
-                <a
+                <Link
                   href="/dashboard"
-                  className="text-gray-900 dark:text-white hover:underline"
                   aria-current="page"
                 >
-                  Dashboard
-                </a>
+                  <a className="text-gray-900 dark:text-white hover:underline">
+                    Dashboard
+                  </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/item"
-                  className="text-gray-900 dark:text-white hover:underline"
-                >
-                  Add Item
-                </a>
+                <Link href="/item">
+                  <a className="text-gray-900 dark:text-white hover:underline">
+                    Add Item
+                  </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="/order"
-                  className="text-gray-900 dark:text-white hover:underline"
                 >
-                  Order
-                </a>
+                  <a className="text-gray-900 dark:text-white hover:underline">
+                    Order
+                  </a>
+                </Link>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="#"
                   className="text-gray-900 dark:text-white hover:underline"
                 >
                   Features
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

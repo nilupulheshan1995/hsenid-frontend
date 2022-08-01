@@ -8,6 +8,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import AddCategoryForm from "../components/forms/AddCategoryForm";
 import AddItemForm from "../components/forms/AddItemForm";
 import { addCategories } from "../api/base-api";
+import Login from "../components/forms/login";
 
 const Home: NextPage = () => {
   return (
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
+      <Login/>
       
 
       {/* <Footer/> */}

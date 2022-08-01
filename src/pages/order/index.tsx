@@ -1,17 +1,18 @@
 import { ErrorMessage, Field, Form } from "formik";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { GET_ALL_ITEM_API } from "../../api/base-api";
+import { GET_ALL_ITEM_API, submitOrder } from "../../api/base-api";
 import FormBase from "../../components/forms/FormBase";
 import Header from "../../components/header";
 import TableBase from "../../components/tables/TableBase";
 import useFetch from "../../hooks/useFetchHook";
-import { ItemResponse, ItemType } from "../../types/api-types";
-
-interface OrderType {
-  qty: number;
-  item: number;
-}
+import {
+  ItemResponse,
+  ItemType,
+  OrderSubmitType,
+  OrderType,
+} from "../../types/api-types";
 
 const orderTableHeaders = [
   "Item ID",
@@ -28,11 +29,33 @@ const Order: NextPage = () => {
   const [orderTableList, setOrderTableList] = useState<any>([]);
   const [totalCost, setTotalCost] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
+  const router = useRouter();
 
-  const handleSubmit = (value: any) => {
+  const handleAddItem = (value: any) => {
     const orderItem: OrderType = { item: Number(value.itemid), qty: value.qty };
     setOrderList([...orderList, orderItem]);
     updateOrderItemTable(orderItem);
+  };
+
+  const handleSubmit = () => {
+    const order: OrderSubmitType = {
+      costTotal: totalCost,
+      customer: 1,
+      discount: 0,
+      sellTotal: total,
+      orderDetials: orderList,
+    };
+
+    submitOrder(order).then((res) => {
+      if (res.status == 200) {
+        router.push('/order/' + res?.data?.order1PK).then((res) => {
+          alert("Place Order Successful!");
+        })
+      } else {
+        alert(res.data);
+        router.reload();
+      }
+    });
   };
 
   useEffect(() => {
@@ -79,16 +102,17 @@ const Order: NextPage = () => {
         <li>Description :{itemObj?.description}</li>
         <li>Unit Price :{itemObj?.unitPrice}</li>
         <li>Unit Cost :{itemObj?.unitCost}</li>
+        <li>Available Stock :{itemObj?.avStock}</li>
       </ol>
     );
   };
 
   return (
     <>
-    <Header/>
+      <Header />
       <div className="">
         <FormBase
-          handleSubmit={handleSubmit}
+          handleSubmit={handleAddItem}
           init={{ itemid: "", qty: "" }}
           formTitle="Place Order form"
           formElements={(isSubmitting: any, values: any) => (
@@ -111,14 +135,6 @@ const Order: NextPage = () => {
                 <ErrorMessage name="description" component="div" />
               </div>
 
-              <div className="flex justify-end">
-                <h1 className="text-2xl">Total : {total}</h1>
-              </div>
-              <TableBase
-                body={orderTableList}
-                headers={orderTableHeaders}
-              ></TableBase>
-
               <button
                 className="submitBtn"
                 type="submit"
@@ -126,9 +142,22 @@ const Order: NextPage = () => {
               >
                 Add
               </button>
+
+              <div className="flex justify-end">
+                <h1 className="text-2xl">Total : {total}</h1>
+              </div>
+              <TableBase
+                body={orderTableList}
+                headers={orderTableHeaders}
+              ></TableBase>
             </Form>
           )}
         />
+      </div>
+      <div>
+        <button className="submitBtn" type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
       </div>
     </>
   );
