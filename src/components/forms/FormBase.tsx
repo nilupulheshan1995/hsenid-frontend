@@ -22,7 +22,7 @@ const FormBase: FunctionComponent<FormBaseProps> = (props) => {
           }, 400);
         }}
       >
-        {({ isSubmitting }) => {return props.formElements(isSubmitting)}}
+        {({ isSubmitting,values }) => {return props.formElements(isSubmitting,values)}}
       </Formik>
     </div>
   );

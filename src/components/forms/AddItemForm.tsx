@@ -13,9 +13,9 @@ const AddItemForm: FunctionComponent<AddItemFormProps> = () => {
   const loadCategories = () => {
     if (!!data && Array.isArray(data)) {
       return data.map((opt) => (
-        <option key={opt.categoryId} value={opt.categoryId}>
+        <Field as="option" key={opt.categoryId} value={opt.categoryId}>
           {opt.name}
-        </option>
+        </Field>
       ));
     }
   };
@@ -67,7 +67,7 @@ const AddItemForm: FunctionComponent<AddItemFormProps> = () => {
           <div className="inputWrapper">
             <label>Category</label>
             <Field type="" name="categoryId" as="select" >
-              <option value="null">select category</option>
+              <Field value="null" as="option">select category</Field>
               {loadCategories()}
             </Field>
           </div>

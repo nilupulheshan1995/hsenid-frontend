@@ -3,6 +3,7 @@ import { FunctionComponent } from "react";
 interface TableBaseProps {
     children:any;
     headers:string[];
+    body?:any[];
 }
 
 const TableBase: FunctionComponent<TableBaseProps> = (props) => {
